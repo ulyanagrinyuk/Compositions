@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<h1>Compositions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Attributes</th>
+            <th>SongTitle</th>
+            <th>Artist</th>
+            <th>MusicAuthors</th>
+            <th>TextAuthors</th>
+            <th>Rating</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var language in Model.Music)
+        {
+            <tr>
+                <td>@language.Attributes</td>
+                <td>@language.SongTitle</td>
+                <td>@language.Artist</td>
+                <td>@language.MusicAuthors</td>
+                <td>@language.TextAuthors</td>
+                <td>@language.Rating</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-name="@language.Attributes">Edit?</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-name="@language.Attributes" style="display:inline;">
+                        <button type="submit" class="btn btn-link">Delete?</button>
+                    </form>
+                </td>
+            </tr>         
+        }        
+    </tbody>
+</table>
+<button type="submit" class="btn btn-link">Create New</button>
+
+
+
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <a asp-page="./Create"></a>
+</div>
+ *@
